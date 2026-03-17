@@ -1,0 +1,51 @@
+{
+  "projectType": "general",
+  "projectName": "2048 - The Game",
+  "projectDescription": "A Python implementation of the classic 2048 sliding tile puzzle game, available as both a Tkinter desktop app and a Flask-powered web application.",
+  "theme": "almond",
+  "primaryColor": "#dedede",
+  "lightColor": "#fbde58",
+  "darkColor": null,
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": ["introduction", "quickstart"]
+          },
+          {
+            "group": "How to Play",
+            "pages": ["gameplay/controls", "gameplay/rules", "gameplay/scoring"]
+          },
+          {
+            "group": "Versions",
+            "pages": ["versions/desktop", "versions/web"]
+          },
+          {
+            "group": "Code Reference",
+            "pages": ["reference/game-logic", "reference/web-api"]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Tkinter desktop GUI with colored tile display",
+    "Flask web application with REST API backend",
+    "Score and high score tracking",
+    "Keyboard controls via arrow keys and WASD",
+    "Game over detection with replay option",
+    "Dynamic tile color mapping based on tile value"
+  ],
+  "publicApiSurface": [
+    "POST /move — Move tiles in a direction (left, right, up, down)",
+    "POST /reset — Reset the game to initial state",
+    "GET / — Serve the web game interface",
+    "Game2048.move(direction) — Execute a tile move",
+    "Game2048.game_over() — Check if no moves remain",
+    "Game2048.add_new_tile() — Spawn a new 2 or 4 tile",
+    "Game2048.reset_game() — Reset game state"
+  ]
+}
