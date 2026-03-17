@@ -1,0 +1,55 @@
+---
+title: "Rules"
+description: "Game objective, board mechanics, and win/loss conditions for 2048 - The Game."
+---
+
+## Objective
+
+Combine tiles on a 4×4 grid until you create a tile with the value **2048**. You can keep playing beyond 2048 to chase a higher score.
+
+## Turn sequence
+
+<Steps>
+  <Step title="Choose a direction">
+    Press an arrow key or WASD key to slide all tiles left, right, up, or down.
+  </Step>
+  <Step title="Tiles slide and merge">
+    Every tile moves as far as possible in the chosen direction. When two tiles with the same value collide, they merge into one tile with double the value. Each tile can only merge once per move.
+  </Step>
+  <Step title="A new tile spawns">
+    After every valid move, a new tile appears in a random empty cell. The new tile has a value of **2** (90% chance) or **4** (10% chance).
+  </Step>
+  <Step title="Repeat">
+    Continue until you reach 2048 — or until no moves remain.
+  </Step>
+</Steps>
+
+## Game over
+
+The game ends when both of the following are true:
+
+- There are **no empty cells** on the board.
+- There are **no adjacent tiles with equal values** (horizontally or vertically).
+
+When these conditions are met, no valid move exists and the game is over.
+
+## Tile colors
+
+Each tile value has a distinct background and text color to help you read the board at a glance.
+
+| Tile value | Background color | Text color |
+| ---------- | ---------------- | ---------- |
+| 2          | `#eee4da`        | `#776e65`  |
+| 4          | `#ede0c8`        | `#776e65`  |
+| 8          | `#f2b179`        | `#f9f6f2`  |
+| 16         | `#f59563`        | `#f9f6f2`  |
+| 32         | `#f67c5f`        | `#f9f6f2`  |
+| 64         | `#f65e3b`        | `#f9f6f2`  |
+| 128        | `#edcf72`        | `#f9f6f2`  |
+| 256        | `#edcc61`        | `#f9f6f2`  |
+| 512        | `#edc850`        | `#f9f6f2`  |
+| 1024       | `#edc53f`        | `#f9f6f2`  |
+| 2048       | `#edc22e`        | `#f9f6f2`  |
+| 2048+      | `#3c3a32`        | `#f9f6f2`  |
+
+Tiles with a value of 8 or higher use a light text color (`#f9f6f2`). Tiles with a value of 2 or 4 use a darker text color (`#776e65`).

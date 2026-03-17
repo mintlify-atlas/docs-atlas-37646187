@@ -1,0 +1,65 @@
+---
+title: "Introduction"
+description: "A Python implementation of the classic 2048 sliding tile puzzle game."
+---
+
+## What is 2048 - The Game?
+
+2048 - The Game is a Python-based recreation of the classic 2048 sliding tile puzzle. The goal is simple: combine tiles with the same number to eventually produce a tile with the value **2048**.
+
+This project ships with two fully functional versions:
+
+<CardGroup cols={2}>
+  <Card title="Desktop App" icon="desktop" href="/versions/desktop">
+    A native GUI built with Python's Tkinter library. Run it locally with a single command — no browser required.
+  </Card>
+  <Card title="Web App" icon="globe" href="/versions/web">
+    A Flask-powered web application with a JavaScript frontend. Play in your browser and interact via a REST API.
+  </Card>
+</CardGroup>
+
+## Key features
+
+<CardGroup cols={2}>
+  <Card title="Score tracking" icon="trophy">
+    Tracks your current score and all-time high score across sessions within a single run.
+  </Card>
+  <Card title="Keyboard controls" icon="keyboard">
+    Move tiles using arrow keys or WASD — whichever feels natural to you.
+  </Card>
+  <Card title="Dynamic tile colors" icon="palette">
+    Each tile value has a distinct color, from the soft `#eee4da` of a 2-tile to the golden `#edc22e` of a 2048-tile.
+  </Card>
+  <Card title="Game over detection" icon="flag">
+    The game automatically detects when no valid moves remain and prompts you to play again.
+  </Card>
+</CardGroup>
+
+## Project structure
+
+```
+2048-TheGame/
+├── 2048.py          # Desktop (Tkinter) implementation
+├── app.py           # Web (Flask) server + game logic
+├── templates/
+│   └── index.html   # Web frontend HTML
+├── static/
+│   ├── css/
+│   │   └── styles.css
+│   └── js/
+│       └── script.js
+└── screenshots/
+    ├── 2048.png
+    └── 20481.png
+```
+
+## Getting started
+
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="rocket" href="/quickstart">
+    Get either version running in under two minutes.
+  </Card>
+  <Card title="How to play" icon="gamepad" href="/gameplay/rules">
+    Learn the rules and strategies to reach 2048.
+  </Card>
+</CardGroup>

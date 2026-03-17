@@ -1,0 +1,129 @@
+---
+title: 'Web API Reference'
+description: 'Reference for the Flask REST API in app.py, which exposes the 2048 game over HTTP so it can be played through a browser.'
+---
+
+The Flask application in `app.py` wraps a single `Game2048` instance and exposes three endpoints. The frontend at `/` communicates with `/move` and `/reset` to drive the game.
+
+## Base URL
+
+```
+http://localhost:5000
+```
+
+<Warning>
+**Game state is global, not per-session.**
+
+The `Game2048` instance is created once at module load time and shared across all HTTP requests. There is no per-user or per-session isolation — concurrent requests from different browser tabs or clients will mutate the same board.
+</Warning>
+
+---
+
+## Endpoints
+
+### `GET /`
+
+Serves the HTML game page.
+
+**Response:** `200 OK` — the rendered `index.html` template.
+
+---
+
+### `POST /move`
+
+Applies a directional move to the current board. If the board changes, a new tile is spawned automatically. Returns the updated board state.
+
+#### Request body
+
+<ParamField body="direction" type="string" required>
+  Direction to slide the tiles. Must be one of `"left"`, `"right"`, `"up"`, or `"down"`.
+</ParamField>
+
+#### Response fields
+
+<ResponseField name="board" type="number[][]" required>
+  The full 4×4 board as a list of lists of integers. Empty cells are represented as `0`.
+</ResponseField>
+
+<ResponseField name="score" type="number" required>
+  The current game score. Increases each time two tiles are merged.
+</ResponseField>
+
+<ResponseField name="high_score" type="number" required>
+  The highest score reached in the current server session.
+</ResponseField>
+
+<ResponseField name="game_over" type="boolean" required>
+  `true` when no valid moves remain and the game has ended.
+</ResponseField>
+
+#### Example
+
+```bash curl
+curl --request POST \
+  --url http://localhost:5000/move \
+  --header 'Content-Type: application/json' \
+  --data '{"direction": "left"}'
+```
+
+```json Response
+{
+  "board": [
+    [4, 2, 0, 0],
+    [0, 0, 2, 0],
+    [2, 0, 0, 0],
+    [0, 4, 0, 0]
+  ],
+  "score": 4,
+  "high_score": 4,
+  "game_over": false
+}
+```
+
+---
+
+### `POST /reset`
+
+Resets the game to a fresh state. Zeroes the score, clears the board, and spawns two starting tiles. Returns the initial board state.
+
+This endpoint accepts no request body.
+
+#### Response fields
+
+<ResponseField name="board" type="number[][]" required>
+  The fresh 4×4 board. Exactly two cells will be non-zero (the two starting tiles).
+</ResponseField>
+
+<ResponseField name="score" type="number" required>
+  The reset score — always `0`.
+</ResponseField>
+
+<ResponseField name="high_score" type="number" required>
+  The high score for the current server session. Preserved across resets.
+</ResponseField>
+
+<ResponseField name="game_over" type="boolean" required>
+  Always `false` on a fresh board.
+</ResponseField>
+
+#### Example
+
+```bash curl
+curl --request POST \
+  --url http://localhost:5000/reset \
+  --header 'Content-Type: application/json'
+```
+
+```json Response
+{
+  "board": [
+    [0, 0, 2, 0],
+    [0, 0, 0, 0],
+    [0, 2, 0, 0],
+    [0, 0, 0, 0]
+  ],
+  "score": 0,
+  "high_score": 4,
+  "game_over": false
+}
+```

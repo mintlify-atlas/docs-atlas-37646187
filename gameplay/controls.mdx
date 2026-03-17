@@ -1,0 +1,28 @@
+---
+title: "Controls"
+description: "Keyboard controls for moving tiles in 2048 - The Game."
+---
+
+You can move tiles using either the arrow keys or WASD. Both control schemes are fully supported in the desktop and web versions.
+
+## Keyboard controls
+
+| Action    | Arrow key     | WASD key |
+| --------- | ------------- | -------- |
+| Move left  | `←` Left     | `A`      |
+| Move right | `→` Right    | `D`      |
+| Move up    | `↑` Up       | `W`      |
+| Move down  | `↓` Down     | `S`      |
+
+Every valid move slides all tiles on the board in the chosen direction. If no tile can move, the input is ignored and no new tile spawns.
+
+## New game
+
+Click the **New Game** button in the top bar to reset the board and start a fresh game at any time. Your current score resets to zero, but the high score for the session is preserved.
+
+## Version compatibility
+
+The same keyboard controls apply to both versions of the game:
+
+- **Desktop** — key bindings are registered directly on the Tkinter window.
+- **Web** — key events are captured by the JavaScript frontend and sent to the Flask backend.

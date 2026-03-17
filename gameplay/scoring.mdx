@@ -1,0 +1,38 @@
+---
+title: "Scoring"
+description: "How points are earned and tracked in 2048 - The Game."
+---
+
+## How points are earned
+
+You earn points by merging tiles. When two tiles combine, you receive points equal to the **value of the merged tile**.
+
+- Merging two **16**-tiles creates a **32**-tile and earns **32 points**.
+- Merging two **1024**-tiles creates a **2048**-tile and earns **2048 points**.
+
+Moves that slide tiles without merging any earn no points.
+
+## Score table
+
+| Tiles merged  | Merged value | Points earned |
+| ------------- | ------------ | ------------- |
+| 2 + 2         | 4            | 4             |
+| 4 + 4         | 8            | 8             |
+| 8 + 8         | 16           | 16            |
+| 16 + 16       | 32           | 32            |
+| 32 + 32       | 64           | 64            |
+| 64 + 64       | 128          | 128           |
+| 128 + 128     | 256          | 256           |
+| 256 + 256     | 512          | 512           |
+| 512 + 512     | 1024         | 1024          |
+| 1024 + 1024   | 2048         | 2048          |
+
+Multiple merges in a single move each add to the score individually.
+
+## High score
+
+The game tracks both a **current score** and a **best score** in real time. The best score updates immediately whenever your current score exceeds it.
+
+<Note>
+  The high score is only kept for the current session. It is not saved to disk, so it resets when you close the application or reload the page.
+</Note>

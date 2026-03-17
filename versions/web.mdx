@@ -1,0 +1,100 @@
+---
+title: "Web App"
+description: "A browser-based version of 2048 powered by a Flask backend and a vanilla JavaScript frontend."
+---
+
+## Overview
+
+The web version of 2048 runs a [Flask](https://flask.palletsprojects.com/) server (`app.py`) that exposes a REST API for game actions. The frontend (`templates/index.html`) is rendered server-side and communicates with the API using vanilla JavaScript and a custom CSS stylesheet — no framework or build step required.
+
+## Prerequisites
+
+- Python 3.x
+- `flask` package
+
+## Installation and setup
+
+<Steps>
+  <Step title="Clone the repository">
+    ```bash
+    git clone https://github.com/NiwinKumar/2048-TheGame
+    ```
+  </Step>
+  <Step title="Navigate to the project folder">
+    ```bash
+    cd 2048-TheGame
+    ```
+  </Step>
+  <Step title="Install Flask">
+    ```bash
+    pip install flask
+    ```
+  </Step>
+  <Step title="Start the server">
+    ```bash
+    python app.py
+    ```
+  </Step>
+  <Step title="Open the game in your browser">
+    Navigate to `http://localhost:5000`.
+  </Step>
+</Steps>
+
+## Frontend features
+
+The page served at `/` includes:
+
+- **Game header** — displays the title and a live score panel with current score and best score.
+- **Game board** — a dynamically updated tile grid rendered by `static/js/script.js`.
+- **New Game button** — calls `POST /reset` and re-renders the board.
+- **Instructions** — a short hint reminding you to use arrow keys or WASD.
+
+Styles are loaded from `static/css/styles.css` and JavaScript from `static/js/script.js`.
+
+## REST API endpoints
+
+| Method | Path | Description |
+|--------|------|-------------|
+| `GET` | `/` | Serves the game HTML page. |
+| `POST` | `/move` | Applies a move in the given direction. |
+| `POST` | `/reset` | Resets the board and score to their initial state. |
+
+### POST /move
+
+Request body:
+
+```json
+{
+  "direction": "left" | "right" | "up" | "down"
+}
+```
+
+Response:
+
+```json
+{
+  "board": [[0, 0, 0, 2], ...],
+  "score": 4,
+  "high_score": 16,
+  "game_over": false
+}
+```
+
+### POST /reset
+
+No request body required.
+
+Response format is identical to `/move`:
+
+```json
+{
+  "board": [[0, 0, 0, 2], ...],
+  "score": 0,
+  "high_score": 16,
+  "game_over": false
+}
+```
+
+<Note>
+  The Flask server runs in **debug mode** by default (`debug=True`). Disable this before deploying to a production environment by setting `debug=False` or using a production WSGI server such as Gunicorn.
+</Note>

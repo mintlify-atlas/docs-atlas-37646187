@@ -1,0 +1,67 @@
+---
+title: "Desktop App"
+description: "A native GUI application built with Python's Tkinter library and numpy."
+---
+
+## Overview
+
+The desktop version of 2048 is a self-contained Python application built with [Tkinter](https://docs.python.org/3/library/tkinter.html), Python's standard GUI toolkit, and [numpy](https://numpy.org/) for the 4×4 grid matrix. It runs entirely on your local machine — no browser or network connection required.
+
+The main entry point is `2048.py`, which defines the `Game2048` class and launches the Tkinter window.
+
+## Prerequisites
+
+- Python 3.x
+- `numpy` package
+
+## Installation and setup
+
+<Steps>
+  <Step title="Clone the repository">
+    ```bash
+    git clone https://github.com/NiwinKumar/2048-TheGame
+    ```
+  </Step>
+  <Step title="Navigate to the project folder">
+    ```bash
+    cd 2048-TheGame
+    ```
+  </Step>
+  <Step title="Install numpy">
+    ```bash
+    pip install numpy
+    ```
+  </Step>
+  <Step title="Run the game">
+    ```bash
+    python 2048.py
+    ```
+
+    A window titled **2048** opens immediately.
+  </Step>
+</Steps>
+
+## UI features
+
+The game window contains three main areas:
+
+- **Score bar** — displays your current score and all-time best score for the session, rendered as two side-by-side labels with a `#bbada0` background.
+- **New Game button** — resets the board and score at any time.
+- **4×4 grid** — a 400×400 pixel tile grid with a `#bbada0` background. Each cell is 100×100 pixels with 5-pixel padding on all sides. Tile values are centered in bold 30pt Arial.
+
+## Key bindings
+
+The window accepts both arrow keys and WASD:
+
+| Key | Action |
+|-----|--------|
+| `←` / `A` | Move tiles left |
+| `→` / `D` | Move tiles right |
+| `↑` / `W` | Move tiles up |
+| `↓` / `S` | Move tiles down |
+
+All eight bindings are registered on the root Tkinter window, so focus must be on the game window for input to register.
+
+## Game over behavior
+
+When no valid moves remain, the game displays a popup dialog notifying you that the game is over. From there you can start a new game by clicking **New Game** or closing the dialog and pressing the button manually.
